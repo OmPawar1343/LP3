@@ -1,0 +1,41 @@
+def fibonacci_iterative(n):
+    if n <= 1:
+        return n
+    a, b = 0, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
+
+
+n = int(input("Enter a number: "))
+
+
+fib_number_iter = fibonacci_iterative(n)
+print(f"Iterative Fibonacci number at position {n} is {fib_number_iter}")
+
+def fibonacci_recursive(n):
+    if n <= 1:
+        return n
+    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
+
+
+n = int(input("Enter a number: "))
+
+
+fib_number_rec = fibonacci_recursive(n)
+print(f"Recursive Fibonacci number at position {n} is {fib_number_rec}")
+
+
+
+
+Time Complexity:
+O(2^n): The recursive approach without memoization recalculates Fibonacci values for each recursive call, resulting in an exponential number of calls.
+Space Complexity:
+O(n): The recursion depth reaches n in the worst case, so the stack holds up to n recursive calls.
+
+
+
+Time Complexity:
+O(n): Each Fibonacci number is computed once, then stored and reused, making the time complexity linear.
+Space Complexity:
+O(n): Additional space is needed to store the memoized results, and the recursion depth reaches up to n.

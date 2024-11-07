@@ -1,0 +1,21 @@
+def solve_n_queens(n, first_row, first_col):
+    board = [[0] * n for _ in range(n)]
+    board[first_row][first_col] = 1  
+
+    def place(row):
+        if row == n:
+            print("\n".join(" ".join("Q" if cell else "." for cell in line) for line in board), "\n")
+            return True
+        for col in range(n):
+            if all(board[i][col] == 0 and (col - row + i < 0 or board[i][col - row + i] == 0) and (col + row - i >= n or board[i][col + row - i] == 0) for i in range(row)):
+                board[row][col] = 1
+                if place(row + 1):
+                    return True
+                board[row][col] = 0  
+        return False
+
+    place(first_row + 1)
+
+
+solve_n_queens(4, 0, 1)
+
